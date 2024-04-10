@@ -10,9 +10,105 @@
 </head>
 
 <body>
+  <header>
+    <div class="logo">
+      <img src="./img/logo-cadastra.png" class="logo-cadastra" />
+    </div>
+    <div id="shopping-cart">
+      <img src="./img/icon-carrinho.png" />
+    </div>
+  </header>
+  <div id="modal-cart">
+    <div class="modal-content">
+      <div class="close-container">
+        <span id="close-modal">&times;</span>
+      </div>
+      <div class="title-cart">
+        <h2>Carrinho</h2>
+      </div>
+      <div id="cart-container">
 
+      </div>
+    </div>
+  </div>
+  <main>
+    <div class="top-side">
+      <div class="title">
+        <h2>Blusas</h2>
+      </div>
+      <div id="order-container">
+        <div class="selected-option">Ordenar por:</div>
+        <div id="option-order">
+          <div class="header-mobile">
+            <h2>Ordenar</h2>
+            <span id="close-order"></span>
+          </div>
+          <div class="option" data-value="recent">Mais Recentes</div>
+          <div class="option" data-value="lowest-price">Menor Preço</div>
+          <div class="option" data-value="biggest-price">Maior Preço</div>
+        </div>
+      </div>
+
+      <div class="options-mobile">
+        <button id="filter-button">Filtrar</button>
+        <button id="order-button">Ordenar</button>
+      </div>
+    </div>
+    <div class="page-center">
+      <div id="filters-container">
+        <div class="header-mobile">
+          <h2>Filtrar</h2>
+          <span id="close-filter"></span>
+        </div>
+        <div class="color-container">
+          <div class="select-mobile" id="select-colors">
+            <h3>Cores</h3>
+          </div>
+          <h3 class="title-filter">Cores</h3>
+          <div id="list-color">
+
+          </div>
+          <div class="view-option">
+            <a id="view-more" class="more"></a>
+          </div>
+        </div>
+        <div class="size-container">
+          <div class="select-mobile" id="select-sizes">
+            <h3>Tamanhos</h3>
+          </div>
+          <h3 class="title-filter">Tamanhos</h3>
+          <div id="list-size">
+
+          </div>
+        </div>
+        <div class="price-container">
+          <div class="select-mobile" id="select-prices">
+            <h3>Faixa de Preço</h3>
+          </div>
+          <h3 class="title-filter">Faixa de Preço</h3>
+          <div id="list-price">
+
+          </div>
+        </div>
+        <div class="apply-clear-filter">
+          <button id="apply-filter">Aplicar</button>
+          <button id="clear-filter">Limpar</button>
+        </div>
+      </div>
+      <div class="display-products">
+        <div id="products-container">
+
+        </div>
+        <div class="load-more-products">
+          <button id="load-more">Carregar mais</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <h3>CADASTRA: Implantação de E-commerce VTEX</h3>
+  </footer>
 </body>
-<h1>Desafio Cadastra</h1>
 
 <script src="bundle.js"></script>
 
