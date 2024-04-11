@@ -8,6 +8,9 @@ const sass = require("gulp-sass")(require("sass"));
 const sourcemaps = require("gulp-sourcemaps");
 const browserSync = require("browser-sync").create();
 
+var gulp = require('gulp');
+var imageop = require('gulp-image-optimization');
+
 const webpackConfig = require("./webpack.config.js");
 
 const paths = {
@@ -83,7 +86,13 @@ function html() {
 }
 
 function img() {
-  return src(paths.img.src).pipe(dest(paths.dest + "/img"));
+  gulp.task('images', function (cb) {
+    gulp.src(['src/img/*.png', 'src/img/*.jpg', 'src/img/*.jpeg']).pipe(imageop({
+      optimizationLevel: 5,
+      progressive: true,
+      interlaced: true
+    })).pipe(gulp.dest(paths.dest + "/img")).on('end', cb).on('error', cb);
+  });
 }
 
 const build = series(clean, parallel(styles, scripts, html, img));
