@@ -2,8 +2,9 @@ import { Product } from "./Product";
 import { addToCart } from "./service-cart";
 import { orderProducts } from "./service-order";
 import { filterProducts } from "./service-filter";
+import { cartQuantity } from "./view-cart";
 
-export function displayProducts(products: Product[], loadMore = false) {
+export function displayProducts(products: Product[], loadMore = false): void {
     //Filtrando Produtos
     products = filterProducts(products);
 
@@ -37,7 +38,6 @@ export function displayProducts(products: Product[], loadMore = false) {
         displayProducts(products, true);
     });
 
-    //Função para criar a div do produto
     function createProductDiv(product: Product) {
         const productDiv = document.createElement("div");
         productDiv.classList.add("product");
@@ -54,9 +54,9 @@ export function displayProducts(products: Product[], loadMore = false) {
         buttonBuy.textContent = "Comprar";
         buttonBuy.addEventListener("click", () => {
             addToCart(product);
+            cartQuantity();
         });
         productDiv.appendChild(buttonBuy);
-
         return productDiv;
     }
 }

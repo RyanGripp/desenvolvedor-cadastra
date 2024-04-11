@@ -1,6 +1,6 @@
 import { Product } from "./Product";
 
-export function orderProducts(products: Product[], order: string) {
+export function orderProducts(products: Product[], order: string): Product[] {
     const sortedProducts = [...products];
   
     if (order === "lowest-price") {
@@ -14,7 +14,6 @@ export function orderProducts(products: Product[], order: string) {
         return dateB - dateA;
       });
     }
-  
-    // displayProducts(sortedProducts);
+
     return sortedProducts;
   }

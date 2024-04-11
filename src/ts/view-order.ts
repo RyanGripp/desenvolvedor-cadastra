@@ -1,7 +1,7 @@
 import { Product } from "./Product";
 import { displayProducts } from "./view-products";
 
-export function createOrder(products: Product[]) {
+export function createOrder(products: Product[]): void {
     const dropdown = document.getElementById("order-container") as HTMLDivElement;
     const selectedOption = dropdown.querySelector(".selected-option") as HTMLDivElement;
     const options = dropdown.querySelector("#option-order") as HTMLDivElement;

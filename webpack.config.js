@@ -10,8 +10,8 @@ module.exports = (paths) => ({
     filename: "bundle.js",
   },
   mode: "development",
-  resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"],
+  resolve: { 
+    extensions: [".js", ".jsx", ".ts", ".tsx"], 
   },
   module: {
     rules: [

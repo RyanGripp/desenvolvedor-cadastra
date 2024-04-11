@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   displayProducts(products); //Mostrar todos os produtos
   createOrder(products); //Criar a ordenação dos produtos
   createCart(); //Criar o carrinho
-  OptionsMobile(products);
+  OptionsMobile(products); //Criar as opções para mobile
   console.log(serverUrl);
 });
 

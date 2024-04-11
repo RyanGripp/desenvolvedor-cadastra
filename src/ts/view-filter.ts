@@ -4,7 +4,7 @@ import { displayProducts } from "./view-products";
 
 export function createFilters(products: Product[]): void {
 
-    function collectFilters(products: Product[]) {
+    function collectFilters(products: Product[]): Filter {
         const filter: Filter = new Filter();
         const colors: string[] = [];
         const sizes: string[] = [];
@@ -26,7 +26,7 @@ export function createFilters(products: Product[]): void {
         return filter;
     }
 
-    function createColor(listColor: string[]) {
+    function createColor(listColor: string[]): void {
         listColor.forEach(color => {
             const colorDiv = document.createElement("div");
             colorDiv.classList.add("color");
@@ -57,7 +57,7 @@ export function createFilters(products: Product[]): void {
         });
     }
 
-    function createSize(listSizes: string[]) {
+    function createSize(listSizes: string[]): void {
         listSizes.forEach(size => {
             const sizeDiv = document.createElement("div");
             sizeDiv.classList.add("size");
@@ -87,7 +87,7 @@ export function createFilters(products: Product[]): void {
         });
     }
 
-    function createPrice(listPrices: string[]) {
+    function createPrice(listPrices: string[]): void {
 
         function formatPriceLabel(price: string): string {
             const range = price.split('-');

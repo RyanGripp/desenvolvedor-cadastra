@@ -1,8 +1,7 @@
-import { CartItem } from "./CarItem";
-import { Product } from "./Product";
+import { CartItem } from "./CartItem";
 import { removeFromCart } from "./service-cart";
 
-export function createCart() {
+export function createCart(): void {
 
     function openModal() {
         const modal = document.getElementById("modal-cart");
@@ -20,7 +19,6 @@ export function createCart() {
     document.getElementById("shopping-cart").addEventListener("click", openModal);
     document.getElementById("close-modal").addEventListener("click", closeModal);
 
-    //Fechar o modal quando o usuário clica fora da área do modal
     window.addEventListener("click", function (event) {
         const modal = document.getElementById("modal-cart");
         if (event.target == modal) {
@@ -28,9 +26,13 @@ export function createCart() {
             document.body.classList.remove("modal-open");
         }
     });
+
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cartQuantity = document.getElementById("cart-quantity");
+    cartQuantity.innerText = cart.reduce((acc: number, item: CartItem) => acc + item.quantity, 0).toString();
 }
 
-export function showCart() {
+export function showCart(): void {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     const cartContainer = document.getElementById("cart-container");
     cartContainer.innerHTML = "";
@@ -54,7 +56,7 @@ export function showCart() {
           <p class="price">R$ ${productCart.price.toFixed(2)}</p>
           <p>até ${productCart.parcelamento.join("x de R$")}</p>
           <p>Quantidade: ${productCart.quantity}</p>
-          <p class="total">Subtotal: R$ ${(productCart.price*productCart.quantity).toFixed(2)}</p>
+          <p class="total">Subtotal: R$ ${(productCart.price * productCart.quantity).toFixed(2)}</p>
         </div>
       `;
 
@@ -62,22 +64,25 @@ export function showCart() {
         buttonRemove.textContent = "Remover";
         buttonRemove.addEventListener("click", () => {
             removeFromCart(productCart);
+            cartQuantity();
             showCart();
         });
         productDiv.appendChild(buttonRemove);
         cartContainer.appendChild(productDiv);
     });
 
-    //Simula Compra
+    //Para o Finalizar compra não ficar sem ação
     const buttonBuy = document.createElement("button");
     buttonBuy.textContent = "Finalizar compra";
     buttonBuy.addEventListener("click", () => {
         alert("Compra finalizada com sucesso!");
         localStorage.removeItem("cart");
+        const cartQuantity = document.getElementById("cart-quantity");
+        cartQuantity.innerText = "0";
         showCart();
     });
 
-    const total = cart.reduce((acc: number, item: CartItem) => acc + item.price*item.quantity, 0);
+    const total = cart.reduce((acc: number, item: CartItem) => acc + item.price * item.quantity, 0);
     const buttonBuyDiv = document.createElement("div");
     buttonBuyDiv.classList.add("finalize-buy");
     buttonBuyDiv.innerHTML = `<p class="price-total">Valor Total: R$ ${total.toFixed(2)}</p>`;
@@ -85,4 +90,11 @@ export function showCart() {
     buttonBuyDiv.appendChild(buttonBuy);
     cartContainer.appendChild(buttonBuyDiv);
 
+}
+
+export function cartQuantity(): void {
+    const cartQuantity = document.getElementById("cart-quantity");
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const quantityTotal = cart.reduce((acc: number, item: CartItem) => acc + item.quantity, 0);
+    cartQuantity.innerText = (quantityTotal).toString();
 }

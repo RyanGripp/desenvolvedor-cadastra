@@ -70,7 +70,7 @@ export function OptionsMobile(products: Product[]): void {
 }
 
 
-function clearFilters() {
+function clearFilters(): void {
     document.querySelectorAll('.color input[type="checkbox"]').forEach((checkboxElement: HTMLInputElement) => {
         checkboxElement.checked = false;
     });

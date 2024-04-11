@@ -1,7 +1,7 @@
 import { Filter } from "./Filter";
 import { Product } from "./Product";
 
-export function filterProducts(products: Product[]) {
+export function filterProducts(products: Product[]): Product[] {
     const filter = new Filter();
 
     //filtrando pela cor
@@ -23,7 +23,6 @@ export function filterProducts(products: Product[]) {
     });
 
     //filtrando pelo preço
-
     const priceCheck = document.querySelectorAll(".price input[type='checkbox']");
     filter.price = [];
 
@@ -52,10 +51,6 @@ export function filterProducts(products: Product[]) {
 
         return colorMatch && sizeMatch && priceMatch;
     });
-
-    //Verificando se há ordem selecionada
-    // const selectedOption = document.querySelector(".selected-option").getAttribute("data-value");
-    // orderProducts(filteredProducts, selectedOption);
 
     return filteredProducts;
 }
